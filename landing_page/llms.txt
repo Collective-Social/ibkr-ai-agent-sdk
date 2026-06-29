@@ -1,0 +1,53 @@
+# IBKR AI Agent SDK (MCP Server)
+
+> An open-source Python SDK and Model Context Protocol (MCP) server for connecting AI Agents to Interactive Brokers (IBKR).
+
+## Overview
+This SDK provides a secure, locally-hosted MCP server that allows AI agents (like Claude Desktop, Cursor, Antigravity) to read portfolio data and execute trades on Interactive Brokers.
+
+- **GitHub Repository**: https://github.com/Collective-Social/ibkr-ai-agent-sdk
+- **Architecture**: Runs a local Python MCP server (`mcp_server/server.py`) which connects to an IBKR TWS or IB Gateway instance (running on `localhost:7497`).
+- **Security**: Includes military-grade server-side guardrails. Operations with potential financial risk (like `place_order`) are rigorously checked for valid tickers, maximum position sizing, and proper order types before execution.
+
+## Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Collective-Social/ibkr-ai-agent-sdk.git
+   cd ibkr-ai-agent-sdk
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure IBKR:**
+   Ensure IBKR TWS or IB Gateway is running locally, logged in (paper trading recommended), and API access is enabled on port `7497`.
+
+## MCP Client Configuration
+
+To connect an AI agent to this server, add the following to your MCP client configuration (e.g., `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "ibkr": {
+      "command": "python",
+      "args": ["/absolute/path/to/ibkr-ai-agent-sdk/mcp_server/server.py"]
+    }
+  }
+}
+```
+
+## Available Tools
+
+The MCP server exposes the following tools:
+- `get_portfolio`: Fetch the current portfolio holdings and cash balances.
+- `get_market_data(ticker)`: Fetch live price data and bid/ask quotes for a ticker.
+- `place_order(ticker, action, quantity, order_type)`: Execute a trade. Subject to strict safety guardrails.
+
+## Safety & Guardrails
+- **Max Quantity Check**: `place_order` will reject quantities that exceed safety limits (default limit is 100 shares).
+- **Valid Tickers**: Trades are only permitted for a predefined whitelist of highly liquid instruments (e.g., AAPL, MSFT, SPY).
+- **Paper Trading**: It is strongly recommended to run TWS in Paper Trading mode to test agent workflows.
