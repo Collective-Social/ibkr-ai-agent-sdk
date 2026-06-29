@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBKR AI Agent SDK - Your Portfolio, AI Managed</title>
+    <meta name="description" content="Securely connect Claude, Gemini, and other AI agents directly to your Interactive Brokers account using the open-source IBKR MCP Server.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <header class="navbar">
+        <div class="logo">IBKR MCP<span>.AI</span></div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#setup">Setup Guide</a>
+        </nav>
+        <a href="#download" class="cta-btn small">Download Now</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Give AI the keys to your portfolio. <br><span class="highlight">Safely.</span></h1>
+                <p>Connect Claude, Gemini, or any MCP-compatible AI agent directly to your Interactive Brokers account. Zero cloud dependencies. Military-grade server-side guardrails.</p>
+                <div class="hero-buttons">
+                    <a href="#setup" class="cta-btn">Get Started</a>
+                    <a href="https://github.com/duncanluke/ibkr-ai-agent-sdk" class="secondary-btn">View Source</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-card terminal">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <p class="title">Claude via MCP</p>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="user-msg">> What's my portfolio exposure and can we buy 10 AAPL?</p>
+                        <p class="ai-msg">Fetching your IBKR portfolio... <br>
+                        Currently, you have 66.3 VOO and 22 TSM. <br>
+                        Placing order for 10 AAPL... <br>
+                        <span class="success">Order Placed Successfully. ID: 19284</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Why use IBKR MCP?</h2>
+            <div class="feature-grid">
+                <div class="glass-card feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>100% Local Execution</h3>
+                    <p>The MCP server runs on your machine, alongside TWS or IB Gateway. Your credentials never leave your device.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Server-Side Guardrails</h3>
+                    <p>AIs hallucinate. Our built-in kill switches (max drawdown, max order size) prevent catastrophic trades automatically.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Plug & Play AI</h3>
+                    <p>Built on the Model Context Protocol (MCP). Instantly compatible with Claude Desktop, Cursor, and any MCP client.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="setup" class="setup-guide">
+            <h2>Quick Setup Guide</h2>
+            <div class="steps">
+                <div class="step glass-card">
+                    <div class="step-num">1</div>
+                    <h3>Install the SDK</h3>
+                    <code>git clone https://github.com/duncanluke/ibkr-ai-agent-sdk.git<br>cd ibkr-ai-agent-sdk<br>pip install -r requirements.txt</code>
+                </div>
+                <div class="step glass-card">
+                    <div class="step-num">2</div>
+                    <h3>Configure Guardrails</h3>
+                    <p>Edit the <code>config.json</code> file to set your maximum order values and allowed tickers to keep the AI in check.</p>
+                </div>
+                <div class="step glass-card">
+                    <div class="step-num">3</div>
+                    <h3>Start the Server</h3>
+                    <code>python -m mcp_server.server</code>
+                    <p>Add the server to your Claude Desktop config or connect directly via FastMCP.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 IBKR MCP.AI open-source project. Not affiliated with Interactive Brokers.</p>
+    </footer>
+</body>
+</html>
